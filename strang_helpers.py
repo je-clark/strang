@@ -47,6 +47,7 @@ def extract_char_bits(strang):
     return tuple(char_bits)
 
 def encode_strang(bitwise_strang, spreading_code):
+    
     encoding = [0,]*(len(spreading_code[0])*8)
     for character, code in zip(bitwise_strang, spreading_code):
         encoded_char = ()
@@ -64,6 +65,9 @@ def encode_strang(bitwise_strang, spreading_code):
 # While this isn't convoluted in a mathematical sense,
 # it is absolutely convoluted in an intellectual sense.
 def convert_string_to_integer(strang, order = None):
+    # If you have multiple strings to process, use 
+    # identify_walsh_order() on the max string length
+    # and pass in that value
     if not order:
         order = identify_walsh_order(len(strang))
     with open(f'.//spreading_codes//walsh_{order}.pkl', 'rb') as f:
@@ -71,5 +75,3 @@ def convert_string_to_integer(strang, order = None):
 
     bitwise_strang = extract_char_bits(strang)
     return encode_strang(bitwise_strang, spreading_code)
-    
-print(convert_string_to_integer('poles'))
