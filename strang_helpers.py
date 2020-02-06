@@ -79,7 +79,7 @@ def encode_strang(bitwise_strang, spreading_code):
 def decode_strang(bitwise_strang):
 
     bit_length = int(len(bitwise_strang)/8)
-    print(bit_length)
+    #print(bit_length)
     order = int(math.log2(bit_length))
     spreading_code = get_spreading_code(order)
 
@@ -100,8 +100,9 @@ def decode_strang(bitwise_strang):
                 applied_bit = 1
             else:
                 applied_bit = 0
+            print(f'applying {applied_bit} at offset {offset}')
             char = char + (applied_bit << offset)
-        
+        print(char)
         strang.append(chr(char))
 
     return ''.join(filter(lambda x : x != '\x00', strang))
